@@ -1,0 +1,13 @@
+nav a.active{
+    color: #23BE0A;
+    border: 1px solid;
+    padding: 8px 10px;
+    border-radius: 5px;
+    outline-color: #23BE0A;  
+}
+nav ul li{
+    font-weight:500;
+    padding: 8px 10px;
+    border-radius: 5px;
+    color: gray;
+}
