@@ -10,6 +10,7 @@ import Root from './Components/Root/Root.jsx';
 import Home from './Components/Home/Home.jsx';
 import Dashboard from './Components/Dashboard/Dashboard.jsx';
 import ListedBooks from './Components/Listed Books/ListedBooks.jsx';
+import BookDetail from './Components/Book/BookDetail/BookDetail.jsx';
 
 const router = createBrowserRouter([
   {
@@ -18,7 +19,13 @@ const router = createBrowserRouter([
     children: [
       {
         path: '/',
+        loader:() => fetch('boi-poka.json'),
         element: <Home></Home>
+      },
+      {
+        path:'books/:bookId',
+        element:<BookDetail></BookDetail>,
+        loader:()=>fetch('boi-poka.json')
       },
       {
         path: '/dashboard',
