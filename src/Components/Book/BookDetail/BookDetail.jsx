@@ -1,21 +1,26 @@
-import { useLoaderData, useNavigate, useParams } from "react-router-dom";
+import { useLoaderData, useParams } from "react-router-dom";
+import { addToStoredList } from "../../../utility/addtoDb";
+import { addWishlist } from "../../../utility/addToWishList";
 
 const BookDetail = () => {
 
-    const navigate = useNavigate()
-
-    const handleBack = (e) => {
-        e.preventDefault()
-        navigate(-1)
-    }
-
+    // params
     const { bookId } = useParams()
     const bookIdInt = parseInt(bookId)
+    // load data
     const data = useLoaderData()
-
-    const singleData = data.find(bok => bok.bookId === bookIdInt)
-    console.log(singleData)
-
+    // search book id
+    const singleData = data?.find(bok => parseInt(bok.bookId) === bookIdInt)
+    // read list btn
+    const handleMarkIsRead = (id) => {
+        addToStoredList(id)
+    }
+    const handleWishList = id => {
+        addWishlist(id)
+    }
+    if (!Array.isArray(data)) {
+        return <div>Error: Data is not available</div>;
+    }
     const { bookName, tags, author, category, rating, image, totalPages, yearOfPublishing, publisher, review } = singleData
     return (
         <div>
@@ -62,8 +67,8 @@ const BookDetail = () => {
                             <span>{rating}</span>
                         </p>
                         <div className="mt-5">
-                            <button className="btn bg-white shadow-none mr-4">Read</button>
-                            <button className="btn bg-[#50B1C9] text-white">WishList</button>
+                            <button onClick={() => handleMarkIsRead(bookId)} className="btn bg-white hover:bg-[#50B1C9] px-6 hover:text-white shadow-none mr-4">Read</button>
+                            <button onClick={()=> handleWishList(bookId)} className="btn bg-[#50B1C9] text-white">WishList</button>
                         </div>
                     </div>
                 </div>

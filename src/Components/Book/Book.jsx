@@ -1,7 +1,11 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Book = ({ book }) => {
     const { bookId, bookName, tags, author, category, rating, image } = book
+    // const navigate = useNavigate()
+    // const handleBookDetail = () => {
+    //     <Link()
+    // }
     return (
             <Link to={`books/${bookId}`} className="card bg-base-100 border-2 p-6">
                 <figure className="py-7 bg-[#F3F3F3] rounded-2xl">

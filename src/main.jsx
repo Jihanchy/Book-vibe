@@ -11,6 +11,8 @@ import Home from './Components/Home/Home.jsx';
 import Dashboard from './Components/Dashboard/Dashboard.jsx';
 import ListedBooks from './Components/Listed Books/ListedBooks.jsx';
 import BookDetail from './Components/Book/BookDetail/BookDetail.jsx';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const router = createBrowserRouter([
   {
@@ -19,13 +21,14 @@ const router = createBrowserRouter([
     children: [
       {
         path: '/',
-        loader:() => fetch('boi-poka.json'),
+        loader: () => fetch('/boi-poka.json'),
         element: <Home></Home>
       },
       {
-        path:'books/:bookId',
-        element:<BookDetail></BookDetail>,
-        loader:()=>fetch('boi-poka.json')
+        path: 'books/:bookId',
+        loader: () => fetch('/boi-poka.json'),
+        element: <BookDetail></BookDetail>
+
       },
       {
         path: '/dashboard',
@@ -33,7 +36,8 @@ const router = createBrowserRouter([
       },
       {
         path: '/listedBooks',
-        element: <ListedBooks></ListedBooks>
+        element: <ListedBooks></ListedBooks>,
+        loader: () => fetch('/boi-poka.json')
       }
     ]
   }
@@ -41,5 +45,17 @@ const router = createBrowserRouter([
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <RouterProvider router={router}></RouterProvider>
+    <ToastContainer
+      position="top-center"
+      autoClose={3000}
+      hideProgressBar={false}
+      newestOnTop={true}
+      closeOnClick
+      rtl={false}
+      pauseOnFocusLoss
+      draggable
+      pauseOnHover
+      theme="light"
+    />
   </StrictMode>,
 )
