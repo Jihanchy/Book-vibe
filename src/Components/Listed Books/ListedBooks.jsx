@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import {useEffect, useState } from 'react';
 import { useLoaderData } from 'react-router-dom';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
@@ -7,9 +7,11 @@ import ReadList from '../ReadList/ReadList';
 import { IoIosArrowDown } from "react-icons/io";
 
 const ListedBooks = () => {
+    
     const [readList, setReadList] = useState([])
     const [sort, setSort] = useState('')
     const data = useLoaderData()
+
     useEffect(() => {
         const storedList = getStoredList()
         const storedListInt = storedList.map(id => parseInt(id))
@@ -28,6 +30,7 @@ const ListedBooks = () => {
             setReadList(sortedListByPages)
        }
     }
+    
     
     return (
         <div>
@@ -62,8 +65,9 @@ const ListedBooks = () => {
                     <h2>Any content 2</h2>
                 </TabPanel>
             </Tabs>
+                                                                                  
         </div>
     );
 };
-
 export default ListedBooks;
+
